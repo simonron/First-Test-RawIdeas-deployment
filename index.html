@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="noindex" />
+	<title>Template Test</title>
+
+	<head>
+		<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+	</head>
+
+	<body>
+		<i id="score">score</i> <a href="#" id="article_a">article</a> <i><a href="#" id="comments_a">(comments)</a></i>
+
+
+		<script>
+			var ref = new Firebase("https://hacker-news.firebaseio.com/v0/");
+			for (var i = 1; i < 11; i++) {
+				getNews(i)};
+				
+				function getNews(i){
+			var itemRef;
+				ref.child('topstories').child(i).on('value', function(snapshot) {
+					if (itemRef) {
+						itemRef.off();
+					}
+
+					//Get the ID of the top article
+					var id = snapshot.val();
+					
+					//Get the article details and update in realtime
+					itemRef = ref.child('item').child(id);
+					itemRef.on('value', function(snapshot) {
+						var item = snapshot.val();
+						document.getElementById("score").innerHTML = item.score;
+						var anchor = document.getElementById("article_a")
+						anchor.innerHTML = item.title;
+						anchor.href = item.url;
+						console.log(item.score, item.title, item.url);
+						document.getElementById("comments_a").href = "https://news.ycombinator.com/item?id=" + 'item.id';
+					});
+				});
+
+			};
+
+
+			/*			place = groups[i].name;
+						address = groups[i].location.address;
+						console.log("location = " + place + "Address = " + address);
+
+						$("#clientTemplate").tmpl(place).appendTo("div");*/
+		</script>
+
+
+
+	</body>
+
+</html>
+<script>
+	function displayLocations(groups) {
+		console.log("groups.length =" + groups.length);
+		$("div").children().remove();
+		for (var i = 0; i < groups.length; i++) {
+
+			place = groups[i].name;
+			address = groups[i].location.address;
+			console.log("location = " + place + "Address = " + address);
+
+			$("#clientTemplate").tmpl(place).appendTo("div");
+
+		}
+	}
+</script>
+
+<script>
+	document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+</script>

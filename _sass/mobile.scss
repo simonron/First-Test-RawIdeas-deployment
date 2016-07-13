@@ -1,0 +1,192 @@
+@import "bourbon/bourbon";
+@import "variables";
+@import "../app/assets/stylesheets/neat";
+@import "typography";
+@import "reset";
+@import "pygments";
+@import "bourbon-nav";
+
+p {
+  margin-bottom: 1em;
+}
+
+h1, h2, h3, h4 {
+  margin-bottom: 0.8em;
+}
+
+a {
+  text-decoration: none;
+  color: #6DBCE6;
+
+}
+
+body > header {
+  @include grid-column-gradient(gradient-stops(4));
+  @include outer-container;
+
+  div.header-content {
+    div.logo {
+      background: #FFF;
+      color: darken(#6DBCE6, 10%);
+      padding: golden-ratio(1em, 1);
+      text-align: center;
+
+      a > img {
+        width: 286px;
+      }
+    }
+
+    nav.buttons {
+      @include row;
+      padding: 1.5rem 0;
+
+      a {
+        &.button {
+          border-radius: 5px;
+          box-shadow: inset 0px 1px rgba(255,255,255,.4);
+          font-size: .875rem;
+          font-weight: 200;
+          letter-spacing: 2px;
+          padding: 15px 0;
+          text-align: center;
+          text-transform: uppercase;
+          @include span-columns(2 of 4);
+          @include shift(1);
+
+          &:hover {
+            text-decoration: none;
+          }
+
+          &:active {
+            box-shadow: inset 0 0 10px rgba(0,0,0,.2);
+            @include transition(.25s);
+          }
+
+          &.secondary {
+            @include linear-gradient(#53aee0, darken(#53aee0, 10%));
+            border: 1px solid darken(#53aee0, 30%);
+            color: #FFF;
+            margin-bottom: 10px;
+            text-shadow: 0px -1px darken(#53aee0, 30%);
+
+            &:hover {
+              @include linear-gradient(lighten(#53aee0, 5%), darken(#53aee0, 5%));
+            }
+          }
+
+          &.github {
+            $color: #EEE;
+            @include linear-gradient(lighten($color, 15%), $color);
+            border: 1px solid darken($color, 20%);
+            color: #555;
+            margin-bottom: 10px;
+            text-shadow: 0px 1px white;
+
+            &:hover {
+              @include linear-gradient(lighten($color, 17%), lighten($color, 5%));
+            }
+
+            img {
+              @include size(18px);
+              opacity: .8;
+              vertical-align: sub;
+            }
+          }
+
+          &.docs {
+            @include linear-gradient(lighten(#f66042, 15%), #f66042);
+            border: 1px solid darken(#f66042, 20%);
+            color: #FFF;
+            text-shadow: 0px -1px darken(#f66042, 30%);
+
+            &:hover {
+              @include linear-gradient(lighten(#f66042, 17%), lighten(#f66042, 5%));
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+section.subtitle {
+  @include linear-gradient(#53aee0, darken(#53aee0, 5%));
+  display: block;
+  text-align: center;
+
+  h2 {
+    color: white;
+    font-size: 4rem;
+    font-weight: 200;
+    line-height: 1.2em;
+    margin:0 auto 0;
+    max-width: 980px;
+    padding: 5rem 0;
+    text-align: center;
+    text-shadow: 0px 2px 2px rgba(#000, .15);
+
+    strong {
+      font-weight: 500;
+    }
+
+    @include media(max-width 768px) {
+      font-size: 2rem;
+      line-height: 1.4em;
+      padding: 20px;
+    }
+  }
+}
+
+section.code {
+  background-color: #FDF6E3;
+  padding: 5%;
+
+  div.highlight {
+    background-color: transparent;
+
+    pre {
+      @include outer-container;
+      font-size: 0.8em;
+    }
+  }
+}
+
+section.instructions {
+
+  > section {
+    margin-top: 1em;
+    border-top: 1px solid #eee;
+
+    &#what {
+      margin-top: 0em;
+      border-top: none;
+
+      aside, article {
+        padding-top: 2em;
+      }
+    }
+
+    header {
+      padding: 0.8em 1em 0.1em;
+
+      h3 {
+        color: darken(#FFF0E8, 50%);
+        font-family: 'Helvetica Neue', 'helvetica', sans-serif;
+        font-weight: 200;
+        margin-bottom: 0;
+      }
+    }
+
+    section {
+      padding: 1em;
+      color: #555;
+    }
+  }
+}
+
+footer {
+  border-top: 1px solid #eee;
+  color: #ccc;
+  padding: 2em;
+  text-align: center;
+}

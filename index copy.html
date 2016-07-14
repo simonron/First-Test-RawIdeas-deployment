@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="noindex" />
+	<title>Template Test</title>
+	
+ <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+	<script src="jquery.tmpl.min.js" type="text/javascript"></script>
+	
+	<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+
+	<script>
+		var ref = new Firebase("https://hacker-news.firebaseio.com/v0/");
+		for (var i = 1; i < 11; i++) {
+			getNews(i)
+		};
+
+		function getNews(i) {
+			var itemRef;
+			ref.child('topstories').child(i).on('value', function(snapshot) {
+				if (itemRef) {
+					itemRef.off();
+				}
+				var id = snapshot.val();
+				itemRef = ref.child('item').child(id);
+				itemRef.on('value', function(snapshot) {
+					var item = snapshot.val();
+							document.getElementById("score").innerHTML = item.score;
+							var anchor = document.getElementById("article_a")
+							anchor.innerHTML = item.title;
+							anchor.href = item.url;
+					title=item.title;
+					url=item.url;
+					score= item.score;
+					displayTopTenNews(title,score,url,i);
+					//console.log(score, title, url);
+				});
+			});
+
+		};
+
+		function displayTopTenNews(title,score,url,i) {
+			console.log(score, title, url, i);
+			$("div").children().remove();
+	var output='<i id="score">score</i> <a href="#" id="article_a">article</a>';		
+var html ="";
+			html+="<br><a href='";
+			html+=url+"'>";
+			html+=title+"</a><br>";
+			$("#newsTemplate").tmpl(output).appendTo("div.one");
+		console.log(html);
+			console.log(output);
+		
+		$("#clientTemplate").tmpl().appendTo( "div.two" );
+		};
+	</script>
+
+
+
+	<script id="newsTemplate" type="text/x-jquery-tmpl">
+stuff here is ${html} ${output};
+  ${place}<br>
+    ${address} ${count}<br><br>
+	</script>
+	
+ <script id="clientTemplate" type="text/html">
+    ${place}<br>
+    ${address} ${count}<br><br>
+<a href=${url}>${url}</a><br>
+</script>
+</head>
+
+ <script id="clientTemplate" type="text/html">
+    ${place}<br>
+    ${address} ${count}<br><br>
+<a href=${url}>${url}</a><br>
+</script>
+   
+</head>
+  
+<body>
+ 
+<div><span>The results of running a search for places in the current area shall be displayed here.</span></div>
+ 
+</body>
+</html>
+
+<script>
+	$('document').ready(function(){
+  $(".locate-me").click(function(e){
+    e.preventDefault();
+    fetchGeo();
+  });
+});
+fetchGeo();
+	
+function fetchGeo() {
+  navigator.geolocation.getCurrentPosition(
+    function(pos) {
+      // Succesfully got location
+      var lat = pos.coords.latitude,
+          lng = pos.coords.longitude;
+      fetchLocations(lat, lng);
+			console.log(lat+" "+ lng);
+    },
+    function(error) {
+      // Failed to get location
+      alert(error);
+    }, {
+      // Options for geolocation
+      maximumAge: 10000, 
+      timeout: 10000,
+      enableHighAccuracy: true
+    }
+  );
+}
+      
+      
+function fetchLocations(lat, lng) {
+  var keywords = $("#address").val(),
+      location = "&ll=" + lat + "," + lng,
+      query = keywords ? "&query=" + keywords : "",
+      secrets = "&client_id=A3NC34HT1YOBSRHE5VTZ2TCMSXD34XKGDLHSZSWEFCSP4QFN&client_secret=4KPEOZR5R5Y5PTVUDHWKUM3UNAKQNKUBDG2SF1ZCPUSVKYW0",
+			version = "&v=20160706",
+			mthing = "&m=foursquare";
+      
+
+  $.ajax({
+    url: "https://api.foursquare.com/v2/venues/search?" + location + query + secrets + version + mthing + "&callback=",
+    type: "GET",
+    dataType: "JSON",
+    success: function(data){
+      console.log("OK so far ", data);
+			displayLocations(data.response.venues);
+			displayLocationsImage(data.response);
+			 
+    },
+    error: function(){
+      alert("Error.");
+      console.log(arguments);
+    }
+  });
+}
+	
+	function displayLocationsImage(prefix,suffix){
+		console.log("displayLocationsImage "+prefix +" "+suffix)
+	}
+	
+function displayLocations(groups) {
+	console.log("groups.length ="+groups.length);
+	  $("div").children().remove();
+  for(var i = 0; i < groups.length; i++) {
+
+		place=groups[i].name;  
+		address=groups[i].location.address ;
+		url=groups[i].location.distance;
+		count=i;
+			console.log("location = "+place +"Address = " + address);
+		console.log(groups[i].location.distance);
+
+		$("#clientTemplate").tmpl(groups[i].items).appendTo( "div" );
+		//$("#clientTemplate").tmpl(address).appendTo( "div" );
+
+  }
+}
+
+ 
+ 
+</script>
+<body>
+	<i id="score">score</i> <a href="#" id="article_a">article</a>
+
+	<div class="one"><span>The news will be displayed here</span></div>
+	
+
+	
+	</body>
+
+</html>
+
+
+
+
+<script>
+	document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+</script>

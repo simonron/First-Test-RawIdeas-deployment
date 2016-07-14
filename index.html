@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="noindex" />
@@ -28,26 +29,52 @@
 					title = item.title;
 					url = item.url;
 					score = item.score;
-					count=i;
+					count = i;
 					displayTopTenNews(title, score, url, count);
+					createArray(title, score, url, count);
 				});
 			});
 		};
 
-		function displayTopTenNews(title, score, url,count) {
+		function displayTopTenNews(title, score, url, count) {
 			$("div").children().remove();
 			$("#clientTemplate").tmpl().appendTo("body");
 		}
+
+		function createArray(title, score, url, count) {
+			var newsData = '{"newsItems":[{"count":"count","title": "title","score": "score","url": "url"}]}';
+
+		var newsItem = [count];
+		newsItem[0] = title;
+		newsItem[1] = score;
+		newsItem[2] = url;
+
+		console.log("count "+count+"= "+newsItem[2]);
+
+		
+		}
 	</script>
 </head>
-<body>
 
+<body>
+	<!--<script>
+	var fs = require('fs');
+var util = require('util');
+var log_file = fs.createWriteStream(__dirname + '/debug.log', {flags : 'w'});
+var log_stdout = process.stdout;
+
+console.log = function(d) { 
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
+	</script>-->
 	<script id="clientTemplate" type="text/x-jquery-tmpl">
-		News item ${count} is  <a href = ${url} target="_blank" > ${title} </a> and has a score of ${score} 
+		News item ${count} is <a href=$ {url} target="_blank"> ${title} </a> and has a score of ${score}
 		<br>
 	</script>
 
 </body>
+
 </html>
 
 <script>

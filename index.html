@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="noindex" />
-	<title>Template Test</title>
-
+	<title>Raw Ideas News Hacker App test</title>
 	<script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
 	<script src="jquery.tmpl.min.js" type="text/javascript"></script>
-
 	<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 
 	<script>
 		var ref = new Firebase("https://hacker-news.firebaseio.com/v0/");
 		for (var i = 1; i < 11; i++) {
-			//console.log("story "+ i+" =  "+ ref.child('topstories'));
 			getNews(i)
 		};
 
@@ -32,40 +28,26 @@
 					title = item.title;
 					url = item.url;
 					score = item.score;
-					displayTopTenNews(title, score, url, i);
+					displayTopTenNews(title, score, url);
 				});
 			});
-
 		};
 
-		function displayTopTenNews(title, score, url, i) {
-
+		function displayTopTenNews(title, score, url) {
 			$("div").children().remove();
-
-
 			$("#clientTemplate").tmpl().appendTo("body");
 		}
 	</script>
 </head>
-
 <body>
 
-
 	<script id="clientTemplate" type="text/x-jquery-tmpl">
-
-
-
-		LINK ${score} <a href = ${url} > ${title} </a>
+		News item <a href = ${url} target="_blank" > ${title} </a> has a score of ${score} 
 		<br>
 	</script>
 
-
 </body>
-
 </html>
-
-
-
 
 <script>
 	document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')

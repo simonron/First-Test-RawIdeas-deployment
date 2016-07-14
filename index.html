@@ -28,12 +28,13 @@
 					title = item.title;
 					url = item.url;
 					score = item.score;
-					displayTopTenNews(title, score, url);
+					count=i;
+					displayTopTenNews(title, score, url, count);
 				});
 			});
 		};
 
-		function displayTopTenNews(title, score, url) {
+		function displayTopTenNews(title, score, url,count) {
 			$("div").children().remove();
 			$("#clientTemplate").tmpl().appendTo("body");
 		}
@@ -42,7 +43,7 @@
 <body>
 
 	<script id="clientTemplate" type="text/x-jquery-tmpl">
-		News item <a href = ${url} target="_blank" > ${title} </a> has a score of ${score} 
+		News item ${count} is  <a href = ${url} target="_blank" > ${title} </a> and has a score of ${score} 
 		<br>
 	</script>
 

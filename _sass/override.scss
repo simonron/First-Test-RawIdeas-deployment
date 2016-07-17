@@ -3,11 +3,13 @@ div.container{
 	
 	
 div{
-	margin-top:150px;
-	position:absolute
+	margin-top:0px;
+	position:absolute;
+	background:#ffffff;
+	width:calc(96%);
 	}
 	
-	//padding: 20px;
+	padding: 20px;
 	div#slot0 {
 		top: calc(1*#{$divheight});
 

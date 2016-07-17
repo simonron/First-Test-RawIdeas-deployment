@@ -11,10 +11,27 @@
 	<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 
+	<link rel="stylesheet" href="./css/desktop.css" />
+	<link rel="stylesheet" href="./css/mobile.css" />
+	<link rel="stylesheet" href="./css/style.css" />
+	<link rel="stylesheet" href="./css/override.css" />
 
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://hckrnews.com/img/touch/apple-touch-icon-144x144-precomposed.png">
+<!-- For iPhone 4 with high-resolution Retina display: -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://hckrnews.com/img/touch/apple-touch-icon-114x114-precomposed.png">
+<!-- For first-generation iPad: -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://hckrnews.com/img/touch/apple-touch-icon-72x72-precomposed.png">
+<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+<link rel="apple-touch-icon-precomposed" href="https://hckrnews.com/img/touch/apple-touch-icon-57x57-precomposed.png">
+<!-- For nokia devices: -->
+<link rel="shortcut icon" href="https://hckrnews.com/img/touch/apple-touch-icon.png">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 	<script>
-			var newsItem = new Array();
+		var newsItem = new Array();
 		var title = "blank";
 		var url = "blank";
 		var count = 0;
@@ -24,6 +41,7 @@
 
 		for (var i = 0; i < 10; i++) {
 			getNews(i);
+
 		};
 
 		function getNews(i) {
@@ -32,7 +50,7 @@
 				if (itemRef) {
 					itemRef.off();
 				}
-				var id = snapshot.val();
+				var id = snapshot.val(); //create variables for the template
 				itemRef = ref.child('item').child(id);
 				itemRef.on('value', function(snapshot) {
 					item = snapshot.val();
@@ -40,95 +58,16 @@
 					url = item.url;
 					score = item.score;
 					count = i;
-					$("div.hidden").remove();
-				//newsItem[count] = ["xxx","yyy","zzz"];
-					//var newsItem= new Array();
-					newsItem = [count,title,score,url];
-					/*console.log("count="+count+" " +newsItem[count]);
-						console.log("title="+title+" " +newsItem[count][1]);
-						console.log("score="+score+" " +newsItem[count][2]);
-						console.log("url="+url+" " +newsItem[count][3]);*/
-					console.log("count="+count+" " +newsItem);
-					
+					newsItem = [count, title, score, url];
+					console.log("count=" + count + " " + newsItem);
+					$("div.hidden").remove(); //clears contents of div
 					$(".clientTemplate").tmpl().appendTo("body");
 				});
 			});
 		};
 		
-		
-		
-		
-/*		
-		
-		    function ContentCtrl($scope, $http) {
-        "use strict";
-    <pre><code>$scope.url = 'content.json';
-    $scope.content = [];
-    $scope.fetchContent = function() {
-        $http.get($scope.url).then(function(result){
-            $scope.content = result.data;
-        });
-    }
-    $scope.fetchContent();
-    </code></pre>
-    }
-		*/
-		
-		
-		
-		
-		
-					app.controller("myCtrl", function($scope , $http) {
-					/*	$scope.newtest = [{
-							title: title,
-							url: url,
-							count: count,
-							score: score,
-						}]*/
-						$scope.title = title;
-							$scope.url = url;
-							$scope.count = count;
-							$scope.score = score;
-					$scope.firstName = "John";
-			$scope.lastName = "Doe";
-			$scope.fred = "testing";
-			$scope.newsItem=newsItem;
 
-			$scope.newthing = [{
-				test: "bbbbb",
-				fred: "11"
-			},
-												{
-				test: "aaaa",
-				fred: "44"
-			},
-												{
-				test: "vvvv",
-				fred: "88"
-			},{
-				title: title,
-				url: url
-			},
-												{
-				test: "vvvv",
-				fred: "88"
-			}];
-						
-						
-/*						 "use strict";
-    <pre><code>$scope.dataurl = item;
-    $scope.content = [];
-    $scope.fetchContent = function() {
-        $http.get($scope.dataurl).then(function(result){
-            $scope.content = result.data;
-        });
-    }
-    $scope.fetchContent();
-    </code></pre>*/
-						
-						
-						
-					});
+
 	</script>
 </head>
 
@@ -136,77 +75,16 @@
 	<div class="hidden">
 		When this is working, this text will not be seen - please wait.</div>
 
-	
-			<ul>
-			<li ng-repeat="x in newthing | orderBy:sortorder | filter:query">
-					Order by -
-			<select ng-model="sortorder" class="input-small ">
-				<option selected value="test ">test</option>
-				<option value="fred ">fred</option>
-				<option value="id ">ID</option>
-			</select>
-			Show -
-			<select ng-model="query.level" class="input-small ">
-				<option selected value="">All</option>
-				<option value="test">test</option>
-				<option value="fred">fred</option>
-				<option value="Advanced">advanced</option>
-			</select>
-				
-				
-		<script class="clientTemplate" type="text/x-jquery-tmpl">
-		News item ${count} is <a href=$ {url} target="_blank"> ${title} </a> and has a score of ${score} <br>
-		???? newsItem array is ${newsItem}!!!!<br><BR>
-		<br>
-		
-	</script>
-				<script>
-				document.write("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ newsItem =" +newsItem[][]);
-				</script>
-					
+			<script class="clientTemplate" type="text/x-jquery-tmpl">
+				<div class="container">
+					<div id='slot${count}'>
+						News item ${count} is <a href='${url}' target="_blank"> ${title} </a> and has ${score} point(s).
+					</div>
+				</div> 	<!--end container-->
+			</script>
 
 
-				
-				
-  <div ng-app="myApp" ng-init="qty=1;cost=2" ng-controller="myCtrl">
-
-
-		  <b>Invoice:</b>
-  <div>
-    Quantity: <input type="number" min="0" ng-model="qty">
-  </div>
-  <div>
-    Costs: <input type="number" min="0" ng-model="cost">
-  </div>
-  <div>
-    <b>Total:</b> {{qty * cost | currency}}
-  </div>		
-				
-
-		
-
-				{{score}}
-				{{title}}
-				{{url}}
-				{{count}}<br>
-		{{fred}} {{ firstName + " " + lastName }}
-		<br>
-	<ul>
-			<li ng-repeat="x in newtest">
-				
-	<!--			{{x.count+ ', ' +x.title+ ', ' +x.url+ ', ' +x.score+ ', '+x.fred}}-->
-
-			xxx	{{ x.test + ', ' + x.fred +', '+ x.title + ', ' + x.url } }www
-	</li>
-		
-	
-		</ul>
-	</div>
-<script>
-//document.write(newsItem[0][1]);				
-</script>
 </body>
-
 </html>
 
 <script>

@@ -1,11 +1,7 @@
-html {
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box; }
-
-*, *::after, *::before {
-  box-sizing: inherit; }
-
-body {
-  background: #ccc; }
 
 header h1 {
   float: left; }
@@ -13,7 +9,7 @@ header .source {
   float: right; }
 
 section {
-  max-width: 1200px;
+  max-width: 68em;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -21,10 +17,12 @@ section {
   section::after {
     clear: both;
     content: "";
-    display: block; }
+    display: table; }
   section > code, section code.block {
     display: block; }
   section div {
+    height: 4.8em;
+    line-height: 1.2em;
     text-align: left;
     padding: 1em; }
   section.zero div {
@@ -132,6 +130,7 @@ section {
         margin-right: 0; }
     section.second div#beta {
       padding: 0;
+      line-height: 2.4em;
       text-align: center;
       float: left;
       display: block;
@@ -169,6 +168,10 @@ section {
     table-layout: fixed;
     margin-bottom: 0;
     padding: 0; }
+    section.third div#alpha::after {
+      clear: both;
+      content: "";
+      display: table; }
     section.third div#alpha aside {
       display: table-cell;
       width: 33.33333%;
@@ -213,7 +216,7 @@ section {
       clear: left; }
 
 div.code {
-  max-width: 1200px;
+  max-width: 68em;
   margin-left: auto;
   margin-right: auto;
   padding: 0.5em;
@@ -221,4 +224,4 @@ div.code {
   div.code::after {
     clear: both;
     content: "";
-    display: block; }
+    display: table; }

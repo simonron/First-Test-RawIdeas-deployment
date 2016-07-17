@@ -11,13 +11,18 @@
 	<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 
-
+	<link rel="stylesheet" href="./css/desktop.css" />
+	<link rel="stylesheet" href="./css/mobile.css" />
+	<link rel="stylesheet" href="./css/style.css" />
+	<link rel="stylesheet" href="./css/override.css" />
 
 	<script>
+		var newsItem = new Array();
 		var title = "blank";
 		var url = "blank";
 		var count = 0;
 		var score = "blank";
+		var app = angular.module("myApp", []);
 		var ref = new Firebase("https://hacker-news.firebaseio.com/v0/");
 
 		for (var i = 0; i < 10; i++) {
@@ -25,74 +30,44 @@
 		};
 
 		function getNews(i) {
-			var itemRef;	ref.child('topstories').child(i).on('value', function(snapshot) {
+			var itemRef;
+			ref.child('topstories').child(i).on('value', function(snapshot) {
 				if (itemRef) {
 					itemRef.off();
 				}
-				var id = snapshot.val();
+				var id = snapshot.val(); //create variables for the template
 				itemRef = ref.child('item').child(id);
 				itemRef.on('value', function(snapshot) {
-					var item = snapshot.val();
+					item = snapshot.val();
 					title = item.title;
 					url = item.url;
 					score = item.score;
 					count = i;
-					$("div.hidden").remove();
-					$("#clientTemplate").tmpl().appendTo("body");
+					newsItem = [count, title, score, url];
+					console.log("count=" + count + " " + newsItem);
+					$("div.hidden").remove(); //clears contents of div
+					$(".clientTemplate").tmpl().appendTo("body");
 				});
 			});
 		};
 
-
-		var app = angular.module("myApp", []);
-		app.controller("myCtrl", function($scope) {
-/*			$scope.firstName = "John";
-			$scope.lastName = "Doe";
-			$scope.fred = "testing";
-			$scope.newthing = [{
-				test: "elergphant",
-				fred: "fred"
-			}];*/
-
-			$scope.newtest = [{
-				title: title,
-				url: url,
-				count: count,
-				score: score,
-			}]
-		});
 	</script>
 </head>
 
 <body>
 	<div class="hidden">
 		When this is working, this text will not be seen - please wait.</div>
-	<script id="clientTemplate" type="text/x-jquery-tmpl">
-		News item ${count} is <a href=$ {url} target="_blank"> ${title} </a> and has a score of ${score}
-		<br>
-	</script>
 
-	<script>
-	</script>
+			<script class="clientTemplate" type="text/x-jquery-tmpl">
+				<div class="container">
+					<div id='slot${count}'>
+						News item ${count} is <a href='${url}' target="_blank"> ${title} </a> and has a score of ${score}
+					</div>
+				</div>
+			</script>
 
-	<div ng-app="myApp" ng-controller="myCtrl">
-		<ul>
-			<li ng-repeat="x in newthing">
-				{{ x.test + ', ' + x.fred }}
-			</li>
-		</ul>
-		{{fred}} {{ firstName + " " + lastName }}
-		<ul>
-			<li ng-repeat="x in newtest">
-				{{x.count+ ', ' +x.title+ ', ' +x.url+ ', ' +x.score+ ', '+x.fred}}
-			</li>
-		</ul>
-
-	</div>
-
-
+	<!--end container-->
 </body>
-
 </html>
 
 <script>

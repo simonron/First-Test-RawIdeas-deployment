@@ -1,0 +1,44 @@
+$divheight:4em;
+div.container{
+	
+	
+div{
+	margin-top:150px;
+	position:absolute
+	}
+	
+	//padding: 20px;
+	div#slot0 {
+		top: calc(1*#{$divheight});
+
+	}
+	div#slot1 {
+		top: calc(2*#{$divheight});
+
+	}
+	div#slot2 {
+		top: calc(3*#{$divheight});
+
+	}
+	div#slot3 {
+		top: calc(4*#{$divheight});
+	}
+	div#slot4 {
+		top: calc(5*#{$divheight});
+	}
+	div#slot5 {
+		top: calc(6*#{$divheight});
+	}
+	div#slot6 {
+		top: calc(7*#{$divheight});
+	}
+	div#slot7 {
+		top: calc(8*#{$divheight});
+	}
+	div#slot8 {
+		top: calc(9*#{$divheight});
+	}
+		div#slot9 {
+		top: calc(10*#{$divheight});
+	}
+}

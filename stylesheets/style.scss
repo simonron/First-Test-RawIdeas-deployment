@@ -1,11 +1,15 @@
 @import "bourbon/bourbon";
 @import "variables";
+//@import "typography";
 @import "../app/assets/stylesheets/neat";
-@import "typography";
+
+
+$body-line-height:1.2em; 
+
 
 header {
   h1 {
-    float: left;
+    float: left; 
   }
 
   .source {

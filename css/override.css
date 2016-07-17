@@ -1,0 +1,23 @@
+div.container div {
+  margin-top: 150px;
+  position: absolute; }
+div.container div#slot0 {
+  top: calc(1*4em); }
+div.container div#slot1 {
+  top: calc(2*4em); }
+div.container div#slot2 {
+  top: calc(3*4em); }
+div.container div#slot3 {
+  top: calc(4*4em); }
+div.container div#slot4 {
+  top: calc(5*4em); }
+div.container div#slot5 {
+  top: calc(6*4em); }
+div.container div#slot6 {
+  top: calc(7*4em); }
+div.container div#slot7 {
+  top: calc(8*4em); }
+div.container div#slot8 {
+  top: calc(9*4em); }
+div.container div#slot9 {
+  top: calc(10*4em); }

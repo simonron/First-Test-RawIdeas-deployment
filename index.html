@@ -52,11 +52,16 @@
 				var id = snapshot.val(); //create variables for the template
 				itemRef = ref.child('item').child(id);
 				itemRef.on('value', function(snapshot) {
+					
 					item = snapshot.val();
+					console.log(item);
+					created_date=item.time;
 					title = item.title;
 					url = item.url;
 					score = item.score;
 					count = i;
+          myDate = new Date(1000*created_date);
+					created_date=myDate.toLocaleString();
 					newsItem = [count, title, score, url];
 					$("div.hidden").remove(); //clears contents of div
 										if (start > 9) {
@@ -65,7 +70,7 @@
 								console.log("slot" + i + " has been cleared");
 							}
 					
-					document.getElementById("outer").innerHTML = outer.innerHTML + "<div class='container'> <div id=slot" + count + ">News item " + count + " <a href=" + url + " target='_blank'>" + title + "</a> at " + score + " points.</div></div>";
+					document.getElementById("outer").innerHTML = outer.innerHTML + "<div class='container'> <div id=slot" + count + ">News item " + count + " posted at  "+created_date+" <a href=" + url + " target='_blank'>" + title + "</a> " + score + " points.</div></div>";
 						start += 1
 	
 									console.log("start = " + start + " count=" + count + " " + newsItem);
@@ -94,6 +99,6 @@
 
 </html>
 
-<script>
+<!--<script>
 	document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
-</script>
+</script>-->

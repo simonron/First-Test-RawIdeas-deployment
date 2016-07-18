@@ -14,6 +14,10 @@ div.hidden {
 }
 a {
 	color: #087208;
+	font-style:normal;
+	font-size:105%;
+	margin:0 10px;
+	font-weight:400
 }
 div#outer {
 	margin-bottom: 30px;
@@ -22,6 +26,11 @@ div.container {
 	height: auto;
 	max-width: 800px;
 	margin: 0 auto;
+	font-size:90%;
+	font-style:italic;
+	span{
+		font-size:90%;
+	}
 	div {
 		width: 95%;
 		max-width: 800px;

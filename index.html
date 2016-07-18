@@ -70,7 +70,7 @@
 								console.log("slot" + i + " has been cleared");
 							}
 					
-					document.getElementById("outer").innerHTML = outer.innerHTML + "<div class='container'> <div id=slot" + count + ">News item " + count + " posted at  "+created_date+" <a href=" + url + " target='_blank'>" + title + "</a> " + score + " points.</div></div>";
+					document.getElementById("outer").innerHTML = outer.innerHTML + "<div class='container'> <div id=slot" + count + ">Item " + count + "<span> "+created_date+"</span> <a href=" + url + " target='_blank'>" + title + "</a> <span>" + score + "&nbsp;pts.</span></div></div>";
 						start += 1
 	
 									console.log("start = " + start + " count=" + count + " " + newsItem);

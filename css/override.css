@@ -59,6 +59,12 @@ div.container {
     top: calc(10*4em); }
 
 @media screen and (max-width: 600px) {
+  div.hidden {
+    font-size: 3em;
+    text-align: center;
+    padding: 25px;
+    line-height: 2em; }
+
   div.container {
     padding: 20px; }
     div.container div {

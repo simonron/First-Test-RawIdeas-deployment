@@ -54,7 +54,7 @@
 				itemRef.on('value', function(snapshot) {
 					
 					item = snapshot.val();
-					console.log(item);
+					//console.log(item);
 					created_date=item.time;
 					title = item.title;
 					url = item.url;
@@ -65,15 +65,15 @@
 					newsItem = [count, title, score, url];
 					$("div.hidden").remove(); //clears contents of div
 										if (start > 9) {
-								console.log("slot" + i + " updated");
+								//console.log("slot" + i + " updated");
 								document.getElementById("slot" + i).parentNode.remove();
-								console.log("slot" + i + " has been cleared");
+								//console.log("slot" + i + " has been cleared");
 							}
 					
 					document.getElementById("outer").innerHTML = outer.innerHTML + "<div class='container'> <div id=slot" + count + ">Item " + count + "<span> "+created_date+"</span> <a href=" + url + " target='_blank'>" + title + "</a> <span>" + score + "&nbsp;pts.</span></div></div>";
 						start += 1
 	
-									console.log("start = " + start + " count=" + count + " " + newsItem);
+									//console.log("start = " + start + " count=" + count + " " + newsItem);
 				});
 			});
 			};
@@ -86,13 +86,6 @@
 	<div class="hidden">
 		Please wait for the news feed to initialise.</div>
 	<div id="outer">
-<!--		<script class="clientTemplate" type="text/x-jquery-tmpl">
-
-			<div id='slot${count}'>
-				News item ${count} <a href='${url}' target="_blank"> ${title} </a> at ${score} points.
-			</div>
-
-		</script>-->
 
 	</div>
 </body>

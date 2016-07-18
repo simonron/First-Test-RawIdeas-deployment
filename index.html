@@ -17,20 +17,21 @@
 	<link rel="stylesheet" href="./css/override.css" />
 
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://hckrnews.com/img/touch/apple-touch-icon-144x144-precomposed.png">
-<!-- For iPhone 4 with high-resolution Retina display: -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://hckrnews.com/img/touch/apple-touch-icon-114x114-precomposed.png">
-<!-- For first-generation iPad: -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://hckrnews.com/img/touch/apple-touch-icon-72x72-precomposed.png">
-<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-<link rel="apple-touch-icon-precomposed" href="https://hckrnews.com/img/touch/apple-touch-icon-57x57-precomposed.png">
-<!-- For nokia devices: -->
-<link rel="shortcut icon" href="https://hckrnews.com/img/touch/apple-touch-icon.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://hckrnews.com/img/touch/apple-touch-icon-144x144-precomposed.png">
+	<!-- For iPhone 4 with high-resolution Retina display: -->
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://hckrnews.com/img/touch/apple-touch-icon-114x114-precomposed.png">
+	<!-- For first-generation iPad: -->
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://hckrnews.com/img/touch/apple-touch-icon-72x72-precomposed.png">
+	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+	<link rel="apple-touch-icon-precomposed" href="https://hckrnews.com/img/touch/apple-touch-icon-57x57-precomposed.png">
+	<!-- For nokia devices: -->
+	<link rel="shortcut icon" href="https://hckrnews.com/img/touch/apple-touch-icon.png">
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 	<script>
+		var start = 0;
 		var newsItem = new Array();
 		var title = "blank";
 		var url = "blank";
@@ -39,7 +40,7 @@
 		var app = angular.module("myApp", []);
 		var ref = new Firebase("https://hacker-news.firebaseio.com/v0/");
 
-		for (var i = 0; i < 10; i++) {
+		for (var i = 1; i < 11; i++) {
 			getNews(i);
 
 		};
@@ -59,32 +60,40 @@
 					score = item.score;
 					count = i;
 					newsItem = [count, title, score, url];
-					console.log("count=" + count + " " + newsItem);
 					$("div.hidden").remove(); //clears contents of div
+					if (start > 9) {
+						console.log("slot" + i + " updated");
+						document.getElementById("slot" + i).parentNode.innerHTML = "";
+						console.log("slot" + i + " has been cleared");
+					}
 					$(".clientTemplate").tmpl().appendTo("body");
+						start += 1
+				
+					console.log("start = "+start+" count=" + count + " " + newsItem);
+
 				});
 			});
 		};
-		
-
-
 	</script>
 </head>
 
 <body>
+	<h1> Demonstration Hacker&nbsp;News API&nbsp;feed</h1>
 	<div class="hidden">
-		When this is working, this text will not be seen - please wait.</div>
+		Please wait for the news feed to initialise.</div>
 
-			<script class="clientTemplate" type="text/x-jquery-tmpl">
-				<div class="container">
-					<div id='slot${count}'>
-						News item ${count} is <a href='${url}' target="_blank"> ${title} </a> and has ${score} point(s).
-					</div>
-				</div> 	<!--end container-->
-			</script>
+	<script class="clientTemplate" type="text/x-jquery-tmpl">
+		<div class="container">
+			<div id='slot${count}'>
+				News item ${count} <a href='${url}' target="_blank"> ${title} </a> at ${score} points.
+			</div>
+		</div>
+		<!--end container-->
+	</script>
 
 
 </body>
+
 </html>
 
 <script>

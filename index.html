@@ -48,9 +48,7 @@
 		function getNews(i) {
 			var itemRef;
 			ref.child('topstories').child(i).on('value', function(snapshot) {
-				if (itemRef) {
-					itemRef.off();
-				}
+				if (itemRef) {itemRef.off();}
 				var id = snapshot.val(); //create variables for the template
 				itemRef = ref.child('item').child(id);
 				itemRef.on('value', function(snapshot) {
@@ -61,37 +59,37 @@
 					count = i;
 					newsItem = [count, title, score, url];
 					$("div.hidden").remove(); //clears contents of div
-					if (start > 9) {
-						console.log("slot" + i + " updated");
-						document.getElementById("slot" + i).parentNode.innerHTML = "";
-						console.log("slot" + i + " has been cleared");
-					}
-					$(".clientTemplate").tmpl().appendTo("body");
+										if (start > 9) {
+								console.log("slot" + i + " updated");
+								document.getElementById("slot" + i).parentNode.remove();
+								console.log("slot" + i + " has been cleared");
+							}
+					
+					document.getElementById("outer").innerHTML = outer.innerHTML + "<div class='container'> <div id=slot" + count + ">News item " + count + " <a href=" + url + ">" + title + "</a> at " + score + " points.</div></div>";
 						start += 1
-				
-					console.log("start = "+start+" count=" + count + " " + newsItem);
-
+	
+									console.log("start = " + start + " count=" + count + " " + newsItem);
 				});
 			});
-		};
+			};
 	</script>
 </head>
 
 <body>
+
 	<h1> Demonstration Hacker&nbsp;News API&nbsp;feed</h1>
 	<div class="hidden">
 		Please wait for the news feed to initialise.</div>
+	<div id="outer">
+<!--		<script class="clientTemplate" type="text/x-jquery-tmpl">
 
-	<script class="clientTemplate" type="text/x-jquery-tmpl">
-		<div class="container">
 			<div id='slot${count}'>
 				News item ${count} <a href='${url}' target="_blank"> ${title} </a> at ${score} points.
 			</div>
-		</div>
-		<!--end container-->
-	</script>
 
+		</script>-->
 
+	</div>
 </body>
 
 </html>

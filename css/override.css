@@ -65,25 +65,24 @@ div.container {
       margin-top: 0px;
       position: absolute;
       width: 90%;
-      font-size: 4vw;
       line-height: 1.2; }
     div.container div#slot1 {
-      top: calc(1*6em); }
+      top: calc(1.5*5em); }
     div.container div#slot2 {
-      top: calc(2*6em); }
+      top: calc(2.5*5em); }
     div.container div#slot3 {
-      top: calc(3*6em); }
+      top: calc(3.5*5em); }
     div.container div#slot4 {
-      top: calc(4*6em); }
+      top: calc(4.5*5em); }
     div.container div#slot5 {
-      top: calc(5*6em); }
+      top: calc(5.5*5em); }
     div.container div#slot6 {
-      top: calc(6*6em); }
+      top: calc(6.5*5em); }
     div.container div#slot7 {
-      top: calc(7*6em); }
+      top: calc(7.5*5em); }
     div.container div#slot8 {
-      top: calc(8*6em); }
+      top: calc(8.5*5em); }
     div.container div#slot9 {
-      top: calc(9*6em); }
+      top: calc(9.5*5em); }
     div.container div#slot10 {
-      top: calc(10*6em); } }
+      top: calc(10.5*5em); } }

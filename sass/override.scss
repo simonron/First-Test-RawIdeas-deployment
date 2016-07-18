@@ -1,25 +1,22 @@
-
-
 body {
 	background: #eee;
 }
-h1{
+h1 {
 	text-align: center;
-	margin-top:10px;
-	line-height:1.2em;
+	margin-top: 10px;
+	line-height: 1.2em;
 }
 div.hidden {
 	font-size: 3em;
 	text-align: center;
 	padding: 100px;
-	line-height:2em;
+	line-height: 2em;
 }
-a{
-	color:#087208;
+a {
+	color: #087208;
 }
-div#outer{
-	margin-bottom:30px;
-	
+div#outer {
+	margin-bottom: 30px;
 }
 div.container {
 	height: auto;
@@ -34,7 +31,7 @@ div.container {
 		border: solid 1px #333;
 		border-radius: 4px;
 		padding: 4px 10px;
-		margin-bottom:30px;
+		margin-bottom: 30px;
 	}
 	padding: 20px;
 	div#slot1 {
@@ -74,6 +71,8 @@ div.container {
 			margin-top: 0px;
 			position: absolute;
 			width: 90%;
+			font-size: 4vw;
+			line-height: 1.2;
 		}
 		padding: 20px;
 		div#slot1 {

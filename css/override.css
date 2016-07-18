@@ -60,7 +60,9 @@ div.container {
     div.container div {
       margin-top: 0px;
       position: absolute;
-      width: 90%; }
+      width: 90%;
+      font-size: 4vw;
+      line-height: 1.2; }
     div.container div#slot1 {
       top: calc(1*6em); }
     div.container div#slot2 {

@@ -1,6 +1,24 @@
 body {
   background: #eee; }
 
+.trans {
+  color: #f00; }
+
+.yellow {
+  /*	background-color:#ff0 !important;
+  	    //background-color: cyan !important;
+      -webkit-transition: all 2s ease;
+         -moz-transition: all 2s ease;
+          -ie-transition: all 2s ease;
+           -o-transition: all 2s ease;
+              transition: all 2s ease;*/
+  background-color: #AD310B !important;
+  -webkit-transition: background-color 1000ms linear !important;
+  -moz-transition: background-color 1000ms linear !important;
+  -o-transition: background-color 1000ms linear !important;
+  -ms-transition: background-color 1000ms linear !important;
+  transition: background-color 1000ms linear !important; }
+
 h1 {
   text-align: center;
   margin-top: 10px;
@@ -20,6 +38,9 @@ a {
 div#outer {
   margin-bottom: 30px; }
 
+.highlight {
+  background: #f00; }
+
 div.container {
   height: auto;
   max-width: 800px;
@@ -36,7 +57,10 @@ div.container {
     border: solid 1px #333;
     border-radius: 4px;
     padding: 4px 10px;
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    transition: background 1s linear;
+    -webkit-transition: background 1s linear;
+    -moz-transition: background 1s linear; }
   div.container div#slot1 {
     top: calc(1*4em); }
   div.container div#slot2 {
